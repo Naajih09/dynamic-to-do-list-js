@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const taskList = document.getElementById('task-list');
 
     // Function to add a task
-    function addTask() {
+    /*function addTask() {
         const taskText = taskInput.value.trim();
 
         // Check if input is empty
@@ -35,7 +35,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Clear the input field
         taskInput.value = '';
+    }*/
+   function addTask() {
+    const taskText = taskInput.value.trim();
+
+    if (taskText === '') {
+        alert('Please enter a task.');
+        return;
     }
+
+    const li = document.createElement('li');
+    li.textContent = taskText;
+
+    const removeBtn = document.createElement('button');
+    removeBtn.textContent = 'Remove';
+    removeBtn.classList.add('remove-btn'); 
+
+    removeBtn.onclick = function () {
+        taskList.removeChild(li);
+    };
+
+    li.appendChild(removeBtn);
+    taskList.appendChild(li);
+
+    taskInput.value = '';
+}
+
 
     // Event listener for clicking the 'Add Task' button
     addButton.addEventListener('click', addTask);
